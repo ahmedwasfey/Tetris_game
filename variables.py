@@ -30,5 +30,5 @@ sound=True
 paused=False
 fin=False
 objList =[]
-
+score = 30000
 
