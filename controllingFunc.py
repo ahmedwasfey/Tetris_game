@@ -4,8 +4,9 @@ from random import randint
 from finaltexture import *
 import time
 import threading
-from collision import *
+#from collision import *
 from object import *
+from score import *
 
 # convert from windows cordinates to secreen cordenate so that we can use mouse cordinate in the code
 def W_2_s (x,y):
@@ -820,7 +821,7 @@ def draw():
     global flagr,flagl,xtransfer,randx,randi,ytransfer ,started, options, credits, sound
     global p, keys,bedgep,redgep,ledgep,flagt,sright,sleft,sbottom
     global paused, fin
-    global objList
+    global objList , score
     glDisable(GL_TEXTURE_2D)
     glClear(GL_COLOR_BUFFER_BIT)
     global width, hight
@@ -884,6 +885,7 @@ def draw():
         glVertex2d(-0.65,.8)
         glVertex2d(0.65, .8)
         glEnd()
+        disScore(score)
         # احنا عندنا ليست فيها كل الاشكال اللي نزلت قبل كده اسمها objList ف بنمشي عليهم بالفور دي شكل شكل ونرسمهم وده اللي بيخليهم يفضلوا مكانهم ميختفوش
         for i in objList:
             glLoadIdentity()
@@ -896,7 +898,7 @@ def draw():
             sleft = False
             sbottom = False
             if bedgep < .75:
-                collision()
+               collision()
             glLoadIdentity()
             if flagt :
                 xtransfer +=.05
@@ -927,7 +929,9 @@ def draw():
             sleft = False
             sbottom = False
             time.sleep(.5)
-            objList.append(shape(xtransfer , ytransfer , randi, randx))
+            score= score - 1000
+            print (score)
+            objList.append(shape(round(xtransfer,2) , round(ytransfer,2) , randi, randx))
             xtransfer = 0
             randx = randint(0, 3)
             randi = randint(0, 4)
