@@ -930,7 +930,10 @@ def draw():
             sbottom = False
             time.sleep(.5)
             score= score - 1000
-            print (score)
+            #print (score)
+            if ytransfer >0.7:
+                started = False
+                fin = True
             objList.append(shape(round(xtransfer,2) , round(ytransfer,2) , randi, randx))
             xtransfer = 0
             randx = randint(0, 3)
